@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Things to do all:</h1>
+    <table>
+        {% for item in object_list %}
+
+            <tr>
+
+                <td>{{ item.text }}</td>
+                <td>{{ item.due_date }}</td>
+                <td>{% if item.check_execute != False %}
+                    <input type="checkbox" checked>
+                {% else %}
+                    <input type="checkbox" >
+                {% endif %}
+                </td>
+                <td>
+                    <form action="{% url 'change_value' pk=item.id  %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Выполнил</button>
+                    </form>
+                </td>
+
+            </tr>
+
+        {% endfor %}
+    </table>
+{% endblock %}

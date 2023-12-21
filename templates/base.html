@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+         <link rel="stylesheet" href="https://cdn.dhtmlx.com/gantt/edge/dhtmlxgantt.css">
+        <script src="https://cdn.dhtmlx.com/gantt/edge/dhtmlxgantt.js"></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <div>
+            <a class="button" href='{% url "index" %}'>All tasks</a>
+            <a class="button" href='{% url "today" %}'>Today</a>
+            <a class="button" href='{% url "overdue" %}'>Overdue</a>
+            <a class="button" href='{% url "gantt" %}'>Схема Ганта</a>
+        </div>
+        {% block content %}{% endblock %}
+
+    </body>
+</html>

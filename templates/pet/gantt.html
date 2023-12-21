@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+    <title>Gantt Chart</title>
+
+    <!-- Подключение пакета dhtmlxGantt -->
+
+
+    <style>
+        /* Установка размера контейнера для Gantt-диаграммы */
+        #gantt-chart {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div id="gantt-chart"></div>
+
+    <script>
+        gantt.init("gantt-chart");
+        let start_date
+        let due_date
+        let differenceInDays
+        {% for item in object_list %}
+            start_date =  new Date(Date.parse(`{{ item.start_date }}`))
+            due_date =  new Date(Date.parse(`{{ item.due_date }}`))
+            differenceInDays = Math.floor(Math.abs(due_date - start_date) / (1000 * 60 * 60 * 24));
+            gantt.addTask(  {'id': {{item.id}}, 'text': `{{item.text}}` , 'start_date': start_date , 'duration': differenceInDays})
+
+         {% endfor %}
+
+
+        // Отображение Gantt-диаграммы
+        gantt.render();
+    </script>
+{% endblock %}
